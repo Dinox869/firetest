@@ -8,10 +8,14 @@ class CustomeListTile extends GetView<HomeController> {
   final int index;
   final String weight;
   final String time;
-  final String ?id;
+  final String? id;
 
   const CustomeListTile(
-      {Key? key, required this.index, required this.time, required this.weight, this.id})
+      {Key? key,
+      required this.index,
+      required this.time,
+      required this.weight,
+      this.id})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -42,7 +46,10 @@ class CustomeListTile extends GetView<HomeController> {
               children: [
                 BlockButtonWidget(
                   color: Colors.grey,
-                  text: const Text('Update', style: TextStyle(color: Colors.white),),
+                  text: const Text(
+                    'Update',
+                    style: TextStyle(color: Colors.white),
+                  ),
                   onPressed: () {
                     controller.updateData(id!);
                     controller.animate(index);
@@ -85,11 +92,11 @@ class CustomeListTile extends GetView<HomeController> {
               keyboardType: TextInputType.number,
               controller: controller.controller2,
               onSaved: (input) {
-                        controller.weight.value = input!;
-                      },
-                      onChanged: (input) {
-                        controller.weight.value = input;
-                      },
+                controller.weight.value = input!;
+              },
+              onChanged: (input) {
+                controller.weight.value = input;
+              },
               style: Get.textTheme.button,
               textAlign: TextAlign.start,
               decoration: Ui.getInputDecoration(

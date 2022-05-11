@@ -27,20 +27,22 @@ class HomeController extends GetxController {
     initLoading.value = false;
   }
 
-  void saveData() async{
+  void saveData() async {
     if (weight.value.isEmpty) {
       error.value = true;
     } else {
       error.value = false;
       loading.value = true;
-      Weight weightData = Weight(weight: weight.value, time: DateTime.now().toString());
+      Weight weightData =
+          Weight(weight: weight.value, time: DateTime.now().toString());
       int saveNumber = 0;
-      if(weightList.length > 0){
-        await FireBaseProvider().push(weightData, (int.parse(weightList.last.id.toString()) + 1));
-      } else{
+      if (weightList.length > 0) {
+        await FireBaseProvider()
+            .push(weightData, (int.parse(weightList.last.id.toString()) + 1));
+      } else {
         await FireBaseProvider().push(weightData, 1);
       }
-      
+
       weight.value = '';
       controller1.text = '';
       loading.value = false;
@@ -48,19 +50,20 @@ class HomeController extends GetxController {
     }
   }
 
-  void updateData(String index) async{
+  void updateData(String index) async {
     updateLoad.value = true;
-    await FireBaseProvider().update(Weight(weight: weight.value, time: DateTime.now().toString()), (int.parse(index)));
+    await FireBaseProvider().update(
+        Weight(weight: weight.value, time: DateTime.now().toString()),
+        (int.parse(index)));
     weight.value = '';
     controller2.text = '';
     fetchData();
     updateLoad.value = false;
   }
 
-
   void delete(String index) async {
-      await FireBaseProvider().delete(int.parse(index));
-      fetchData();
+    await FireBaseProvider().delete(int.parse(index));
+    fetchData();
   }
 
   String timeParse(String time) {
@@ -78,9 +81,9 @@ class HomeController extends GetxController {
   }
 
   void logout() async {
-    try{
+    try {
       await FireBaseProvider().signOut();
       Get.offAndToNamed(Routes.LOGIN);
-    }catch(e){}
+    } catch (e) {}
   }
 }

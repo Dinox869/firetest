@@ -19,8 +19,11 @@ class HomeView extends GetView<HomeController> {
         ),
         actions: [
           GestureDetector(
-            onTap: () => controller.logout(),
-            child: const Icon(Icons.logout, color: Colors.black,))
+              onTap: () => controller.logout(),
+              child: const Icon(
+                Icons.logout,
+                color: Colors.black,
+              ))
         ],
         centerTitle: true,
         backgroundColor: context.theme.scaffoldBackgroundColor,
@@ -91,11 +94,11 @@ class HomeView extends GetView<HomeController> {
                           itemCount: controller.weightList.length,
                           itemBuilder: ((_, index) {
                             return CustomeListTile(
-                                index: index,
-                                weight: controller.weightList[index].weight!,
-                                time: controller.weightList[index].time!,
-                                id: controller.weightList[index].id!,
-                                );
+                              index: index,
+                              weight: controller.weightList[index].weight!,
+                              time: controller.weightList[index].time!,
+                              id: controller.weightList[index].id!,
+                            );
                           }),
                         )
                       : const Text('No records found')
